@@ -1,6 +1,6 @@
 {
   "name": "gulp-jest-cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Gulp plugin for Jest",
   "main": "lib/index.js",
   "author": "Jake Murzy <jake@murzy>",
