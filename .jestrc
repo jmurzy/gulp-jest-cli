@@ -1,0 +1,13 @@
+{
+  "testRegex": "/__tests__/.*\\.(test.js)$",
+  "coverageReporters": [
+    "text",
+    "text-summary"
+  ],
+  "collectCoverageFrom": [
+    "**/*.js",
+    "!**/*spec*",
+    "!**/*test*",
+    "!**/*fixture*"
+  ]
+}
