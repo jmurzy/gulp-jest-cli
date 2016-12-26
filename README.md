@@ -19,7 +19,69 @@ $ yarn add gulp-jest-cli jest-cli --dev
 ### Usage
 
 ```js
-$ 
+import plugin from 'gulp-jest-cli';
+
+gulp.task('jest', () => gulp
+  /*
+   * Jest's `rootDir` will be set to the directory specified in `gulp.src`
+   * unless a `rootDir` is explicitly configured via configuration options
+   */
+  .src('src')
+  .pipe(plugin({
+    config: {
+      /* Configuration options */
+      {
+        coverageReporters: [
+          'text',
+          'text-summary',
+          'json',
+          'lcov',
+        ],
+        collectCoverageFrom: [
+          '**/*.js',
+          '!**/*test*',
+        ]
+      }
+    },
+    /* CLI options*/
+    coverage: true,
+    onlyChanged: true,
+  }))
+);
+```
+
+Jest docs for configuration options can be found [here](http://facebook.github.io/jest/docs/configuration.html#configuration-options-configuration).
+
+
+#### Configuration options via external file
+
+```js
+import plugin from 'gulp-jest-cli';
+
+gulp.task('jest', () => gulp
+  .src('src')
+  .pipe(plugin({
+    config: '.jestrc',
+    /* CLI options */
+    coverage: true,
+    onlyChanged: true,
+  }))
+);
+```
+
+#### Configuration options via package.json
+```js
+import plugin from 'gulp-jest-cli';
+
+gulp.task('jest', () => gulp
+  .src('src')
+  .pipe(plugin({
+    /* Jest will fallback to package.json for configuration when `config` is omitted */
+    /* CLI options */
+    coverage: true,
+    onlyChanged: true,
+  }))
+);
 ```
 
 #### Questions?
