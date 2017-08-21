@@ -5,8 +5,8 @@ import through2 from 'through2';
 
 const PLUGIN_NAME = 'gulp-jest-cli';
 
-const runCLI = (argv, rootDir, done) => {
-  jest.runCLI(argv, rootDir, (result) => {
+const runCLI = (argv, projects, done) => {
+  jest.runCLI(argv, projects, (result) => {
     if (result.numFailedTestSuites || result.numFailedTests) {
       const error = new PluginError(PLUGIN_NAME, 'Jest failed');
       error.jest = true;
@@ -75,7 +75,7 @@ const plugin = (options = {}) => {
       };
     }
 
-    runCLI(argv, rootDir, done);
+    runCLI(argv, [rootDir], done);
   }
 
   return through2.obj(onceOrThrow);
